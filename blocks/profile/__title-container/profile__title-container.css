@@ -1,0 +1,7 @@
+.profile__title-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 22.5px 0 14px;
+}
+
