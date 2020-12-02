@@ -11,6 +11,7 @@
   border: 2px solid #FFFFFF;
   transition: opacity 0.3s ease;
   opacity: 1;
+  cursor: pointer;
 }
 
 .profile__add-button:hover {

@@ -11,7 +11,8 @@
 @media screen and (min-width: 1280px) {
   .profile {
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 100%;
+    padding-top: 36.25px;
   }
 }
