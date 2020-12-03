@@ -5,10 +5,18 @@
   grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
   padding: 0;
   gap: 20px;
+  max-width: 282px;
+}
+
+@media screen and (min-width: 630px) {
+  .photo-grid__item-list {
+    max-width: 584px;
+  }
 }
 
 @media screen and (min-width: 1280px) {
   .photo-grid__item-list {
     gap: 17px;
+    max-width: inherit;
   }
 }

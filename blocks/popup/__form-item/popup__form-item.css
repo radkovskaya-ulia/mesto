@@ -1,6 +1,6 @@
 .popup__form-item {
   border: none;
-  border-bottom: 1px solid rgb(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgb(0, 0, 0, 0.2);
   width: 100%;
   margin-bottom: 30px;
 }

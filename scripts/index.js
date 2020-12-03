@@ -1,3 +1,13 @@
+const profileButtonNode = document.querySelector('.profile__edit-button');
+const popupNode = document.querySelector('.popup');
+const popupCloseButtonNode = document.querySelector('.popup__close-button');
+const photogridLikeButtonNode = document.querySelector('.photo-grid__like-button');
+const nameInput = document.querySelector('.popup__form-item_el_name');
+const jobInput = document.querySelector('.popup__form-item_el_job');
+const formElement = document.querySelector('.popup__form');
+const nameProfileNode = document.querySelector('.profile__title');
+const jobProfileNode = document.querySelector('.profile__subtitle');
+
 function handleProfileButtonClick() {
   popupNode.classList.add('popup_visible');
   nameInput.value = nameProfileNode.textContent;
@@ -14,16 +24,6 @@ function formSubmitHandler (evt) {
   jobProfileNode.textContent = jobInput.value;
   handleCloseButtonClick();
 }
-
-const profileButtonNode = document.querySelector('.profile__edit-button');
-const popupNode = document.querySelector('.popup');
-const popupCloseButtonNode = document.querySelector('.popup__close-button');
-const photogridLikeButtonNode = document.querySelector('.photo-grid__like-button');
-const nameInput = document.querySelector('.popup__form-item_el_name');
-const jobInput = document.querySelector('.popup__form-item_el_job');
-const formElement = document.querySelector('.popup__form');
-const nameProfileNode = document.querySelector('.profile__title');
-const jobProfileNode = document.querySelector('.profile__subtitle');
 
 profileButtonNode.addEventListener('click', handleProfileButtonClick);
 popupCloseButtonNode.addEventListener('click', handleCloseButtonClick);
