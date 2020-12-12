@@ -1,0 +1,4 @@
+.popup__window_type_image {
+  flex-direction: column;
+  max-width: 75vw;
+}

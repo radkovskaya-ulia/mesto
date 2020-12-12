@@ -1,0 +1,15 @@
+.popup__close-button_type_profile {
+  right: 0;
+  top: -38.62px;
+  width: 26px;
+  height: 26px;
+}
+
+@media screen and (min-width: 1280px) {
+  .popup__close-button_type_profile  {
+    width: 40px;
+    height: 40px;
+    top: -35.72px;
+    right: -27.72px;
+  }
+}

@@ -1,0 +1,10 @@
+.popup__window_type_place {
+  padding: 30px 20px;
+  width: calc(100% - 2*40px);
+}
+
+@media screen and (min-width: 1280px) {
+  .popup__window_type_place {
+    padding: 34px 36px;
+  }
+}

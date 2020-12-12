@@ -6,9 +6,5 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
-
-/* .photo-grid__item:nth-of-type(odd) {
-  align-self: flex-end;
-  justify-self: flex-end;
-} */

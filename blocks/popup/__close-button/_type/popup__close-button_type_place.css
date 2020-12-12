@@ -1,0 +1,15 @@
+.popup__close-button_type_place {
+  right: -25px;
+  top: -25px;
+  width: 30px;
+  height: 30px;
+}
+
+@media screen and (min-width: 1280px) {
+  .popup__close-button_type_place  {
+    width: 40px;
+    height: 40px;
+    top: -35.72px;
+    right: -27.72px;
+  }
+}

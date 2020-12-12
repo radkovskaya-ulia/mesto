@@ -25,66 +25,52 @@
       </section>
       <section class="photo-grid" aria-label="секция с фотограциями">
         <ul class="photo-grid__item-list">
-          <li class="photo-grid__item">
-            <img class="photo-grid__photo" src="./images/Finland.jpg" alt="Финляндия.">
-            <div class="photo-grid__container">
-              <h2 class="photo-grid__title">Финляндия</h2>
-              <button class="photo-grid__like-button" type="button" aria-label="Кнопка добавления лайка"></button>
-            </div>
-          </li>
-          <li class="photo-grid__item">
-              <img class="photo-grid__photo" src="./images/Iceland.jpg" alt="Исландия.">
-              <div class="photo-grid__container">
-                <h2 class="photo-grid__title">Исландия</h2>
-                <button class="photo-grid__like-button" type="button" aria-label="Кнопка добавления лайка"></button>
-              </div>
-          </li>
-          <li class="photo-grid__item">
-            <img class="photo-grid__photo" src="./images/Australia.jpg" alt="Австралия.">
-            <div class="photo-grid__container">
-              <h2 class="photo-grid__title">Австралия</h2>
-              <button class="photo-grid__like-button" type="button" aria-label="Кнопка добавления лайка"></button>
-            </div>
-          </li>
-          <li class="photo-grid__item">
-            <img class="photo-grid__photo" src="./images/Russia.jpg" alt="Россия.">
-            <div class="photo-grid__container">
-              <h2 class="photo-grid__title">Российская Федерация</h2>
-              <button class="photo-grid__like-button" type="button" aria-label="Кнопка добавления лайка"></button>
-            </div>
-          </li>
-          <li class="photo-grid__item">
-            <img class="photo-grid__photo" src="./images/Spain.jpg" alt="Испания.">
-            <div class="photo-grid__container">
-              <h2 class="photo-grid__title">Испания</h2>
-              <button class="photo-grid__like-button" type="button" aria-label="Кнопка добавления лайка"></button>
-            </div> 
-          </li>
-          <li class="photo-grid__item">
-            <img class="photo-grid__photo" src="./images/USA.jpg" alt="Соединенные штаты Америки.">
-            <div class="photo-grid__container">
-              <h2 class="photo-grid__title">США</h2>
-              <button class="photo-grid__like-button" type="button" aria-label="Кнопка добавления лайка"></button>
-            </div>
-          </li>
         </ul>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__text">&copy; 2020 Mesto Russia</p>
     </footer>
-    <div class="popup">
-      <div class="popup__window">
-        <button type="button" class="popup__close-button" aria-label="Кнопка закрытия редактирования профиля"></button>
+    <div class="popup popup_type_profile">
+      <div class="popup__window popup__window_type_profile">
+        <button type="button" class="popup__close-button popup__close-button_type_profile" aria-label="Кнопка закрытия редактирования профиля"></button>
         <form class="popup__form" name="edit_profile">
           <h3 class="popup__form-heading">Редактировать профиль</h3>
-          <input type="text" name="firstname" class="popup__form-item popup__form-item_el_name" required placeholder="Ваше имя">
-          <input type="text" name="job" class="popup__form-item popup__form-item_el_job" required placeholder="Ваше хобби">
-          <button type="submit" class="popup__save-button">Сохранить</button>>
+          <input type="text" name="firstname" class="popup__form-item popup__form-item_type_profile popup__form-item_el_name" required placeholder="Ваше имя">
+          <input type="text" name="job" class="popup__form-item popup__form-item_type_profile popup__form-item_el_job" required placeholder="Ваше хобби">
+          <button type="submit" class="popup__save-button popup__save-button_type_profile">Сохранить</button>
         </form>
       </div>
     </div>
+    <div class="popup popup_type_place">
+      <div class="popup__window popup__window_type_place">
+        <button type="button" class="popup__close-button popup__close-button_type_place" aria-label="Кнопка закрытия добавления места"></button>
+        <form class="popup__form" name="add_place">
+          <h3 class="popup__form-heading">Новое место</h3>
+          <input type="text" name="name" class="popup__form-item popup__form-item_type_place popup__form-item_el_place-name" required placeholder="Название">
+          <input type="text" name="link" class="popup__form-item popup__form-item_type_place popup__form-item_el_place-link" required placeholder="Ссылка на картинку">
+          <button type="submit" class="popup__save-button popup__save-button_type_place">Создать</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup_type_image">
+      <div class="popup__window popup__window_type_image">
+        <button type="button" class="popup__close-button popup__close-button_type_image" aria-label="Кнопка закрытия просмотра изображения"></button>
+        <img class="popup__image" src="" alt="">
+        <p class="popup__text"></p>
+      </div>
+    </div>
   </div>
+  <template class="template">
+    <li class="photo-grid__item">
+      <button type="button" class="photo-grid__delete-button"></button>
+      <img class="photo-grid__photo" src="" alt="">
+      <div class="photo-grid__container">
+        <h2 class="photo-grid__title"></h2>
+        <button type="button" class="photo-grid__like-button"></button>
+      </div>
+    </li>
+  </template>
   <script src="./scripts/index.js"></script>
 </body>
 </html>
