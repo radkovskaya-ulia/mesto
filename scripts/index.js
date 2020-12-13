@@ -73,14 +73,14 @@ function handleCloseButtonClick (evt) {
   targetItem.classList.remove('popup_visible');
 }
 //Функции работы с формами
-function formProfileSubmitHandler (evt) {
+function submitProfileForm (evt) {
   evt.preventDefault();
   nameProfileNode.textContent = nameInput.value;
   jobProfileNode.textContent = jobInput.value;
   handleCloseButtonClick(evt);
 }
 
-function formPlaceSubmitHandler (evt) {
+function submitPlaceForm (evt) {
   evt.preventDefault();
   addNewItem(placeNameInput.value, placeLinkInput.value);
   handleCloseButtonClick(evt);
@@ -104,8 +104,8 @@ popupPlaceCloseButtonNode.addEventListener('click', handleCloseButtonClick);
 popupImageCloseButtonNode.addEventListener('click', handleCloseButtonClick);
 
 //Листенеры на формы
-formProfileElement.addEventListener('submit', formProfileSubmitHandler); 
-formPlaceElement.addEventListener('submit', formPlaceSubmitHandler); 
+formProfileElement.addEventListener('submit', submitProfileForm); 
+formPlaceElement.addEventListener('submit', submitPlaceForm); 
 
 //Функция добавления новой карточки
 function addNewItem(name, link) {
@@ -131,6 +131,7 @@ function imageClick(link, name) {
   const popupImage = popupImageNode.querySelector('.popup__image');
   const popupText = popupImageNode.querySelector('.popup__text');
   popupImage.src = link;
+  popupImage.alt = name + '.';
   popupText.textContent = name;
 }
 
