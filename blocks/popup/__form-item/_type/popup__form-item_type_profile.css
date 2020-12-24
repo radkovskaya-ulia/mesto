@@ -1,17 +1,9 @@
 .popup__form-item_type_profile:nth-of-type(1){
     margin-top: 75px;
 }
-  
-.popup__form-item_type_profile:last-of-type{
-    margin-bottom: 45px;
-}
 
 @media screen and (min-width: 1280px) {
   .popup__form-item_type_profile:nth-of-type(1) {
     margin-top: 54px;
-  }
-
-  .popup__form-item_type_profile:last-of-type {
-    margin-bottom: 48px;
   }
 }

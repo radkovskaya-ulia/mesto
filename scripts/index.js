@@ -22,8 +22,11 @@ const formPlaceElement = document.querySelector('form[name=add_place]');
 //Инпуты
 const nameInput = document.querySelector('.popup__form-item_el_name');
 const jobInput = document.querySelector('.popup__form-item_el_job');
-const placeNameInput = document.querySelector('.popup__form-item_el_place-name')
-const placeLinkInput = document.querySelector('.popup__form-item_el_place-link')
+const placeNameInput = document.querySelector('.popup__form-item_el_place-name');
+const placeLinkInput = document.querySelector('.popup__form-item_el_place-link');
+
+//Другие элементы
+const bodyNode = document.querySelector('.page');
 
 //Информация из профиля 
 const nameProfileNode = document.querySelector('.profile__title');
@@ -66,12 +69,16 @@ const templateElement = document.querySelector('.template');
 //Функция открытия поп-апа
 function openPopup(popup){
   popup.classList.add('popup_visible');
+  bodyNode.addEventListener('keydown', closePopupEsc);
+  popup.addEventListener('click', closePopupClick);
 }
+
 //Функция закрытия поп-апа
 function handleCloseButtonClick (evt) {
   const targetItem = evt.target.closest('.popup');
   targetItem.classList.remove('popup_visible');
 }
+
 //Функции работы с формами
 function submitProfileForm (evt) {
   evt.preventDefault();
@@ -92,6 +99,22 @@ function openAndFillProfilePopup(popup){
   openPopup(popup);
   nameInput.value = nameProfileNode.textContent;
   jobInput.value = jobProfileNode.textContent;
+}
+
+//Функция закрытия поп-апа на кнопку ESC
+function closePopupEsc(evt){
+  if (evt.key === "Escape"){
+    popup = document.querySelector('.popup_visible');
+    popup.classList.remove('popup_visible');
+    bodyNode.removeEventListener('keydown', closePopupEsc);
+  }
+};
+
+//Функция закрытия поп-апа по клику на оверлей
+function closePopupClick(evt) {
+  if (evt.target.classList.contains('popup')) {
+    handleCloseButtonClick(evt)
+  }
 }
 
 //Листенеры на кнопки открытия поп-апов
@@ -161,3 +184,4 @@ function composeItem(item) {
 }
 
 renderList();
+
