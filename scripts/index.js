@@ -72,6 +72,8 @@ function openAndFillProfilePopup(popup){
   openPopup(popup);
   nameInput.value = nameProfileNode.textContent;
   jobInput.value = jobProfileNode.textContent;
+  const submitButton = formProfileElement.querySelector('.popup__save-button');
+  setButtonState(submitButton, formProfileElement.checkValidity(), validationConfig);
 }
 
 //Функция закрытия поп-апа
