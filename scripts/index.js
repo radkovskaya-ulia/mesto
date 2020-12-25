@@ -98,7 +98,7 @@ addPlaceButtonNode.addEventListener('click', () => openPopup(popupPlaceNode));
 //Листенеры на кнопки закрытия поп-апов
 popupProfileCloseButtonNode.addEventListener('click', () => closePopup(popupProfileNode));
 popupPlaceCloseButtonNode.addEventListener('click', () => closePopup(popupPlaceNode));
-popupImageCloseButtonNode.addEventListener('click', closePopup(popupImageNode));
+popupImageCloseButtonNode.addEventListener('click', () => closePopup(popupImageNode));
 
 //Листенеры на формы
 formProfileElement.addEventListener('submit', submitProfileForm); 
