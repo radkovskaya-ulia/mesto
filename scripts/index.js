@@ -32,34 +32,6 @@ const bodyNode = document.querySelector('.page');
 const nameProfileNode = document.querySelector('.profile__title');
 const jobProfileNode = document.querySelector('.profile__subtitle');
 
-//Массив карточек
-const initialCards = [
-  {
-      name: 'Финляндия',
-      link: 'https://images.unsplash.com/photo-1522885147691-06d859633fb8?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2100&q=80'
-  },
-  {
-      name: 'Исландия',
-      link: 'https://images.unsplash.com/photo-1504829857797-ddff29c27927?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2100&q=80'
-  },
-  {
-      name: 'Австралия',
-      link: 'https://images.unsplash.com/photo-1524820197278-540916411e20?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2272&q=80'
-  },
-  {
-      name: 'Российская Федерация',
-      link: 'https://images.unsplash.com/photo-1547448415-e9f5b28e570d?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2100&q=80'
-  },
-  {
-      name: 'Испания',
-      link: 'https://images.unsplash.com/photo-1544918877-460635b6d13e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2255&q=80'
-  },
-  {
-      name: 'США',
-      link: 'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2100&q=80'
-  }
-]; 
-
 //Контейнер для добавления карточек
 const listContainerElement = document.querySelector('.photo-grid__item-list');
 
@@ -73,25 +45,21 @@ function openPopup(popup){
   popup.addEventListener('click', closePopupClick);
 }
 
-//Функция закрытия поп-апа
-function handleCloseButtonClick (evt) {
-  const targetItem = evt.target.closest('.popup');
-  targetItem.classList.remove('popup_visible');
-}
-
 //Функции работы с формами
 function submitProfileForm (evt) {
   evt.preventDefault();
   nameProfileNode.textContent = nameInput.value;
   jobProfileNode.textContent = jobInput.value;
-  handleCloseButtonClick(evt);
+  closePopup(popupProfileNode);
 }
 
 function submitPlaceForm (evt) {
   evt.preventDefault();
   addNewItem(placeNameInput.value, placeLinkInput.value);
-  handleCloseButtonClick(evt);
+  closePopup(evt.target.closest('.popup'));
   formPlaceElement.reset();
+  const submitButton = formPlaceElement.querySelector('.popup__save-button');
+  setButtonState(submitButton, formPlaceElement.checkValidity(), validationConfig)
 }
 
 //Функция открытия и заполнения поп-апа профайла
@@ -101,19 +69,25 @@ function openAndFillProfilePopup(popup){
   jobInput.value = jobProfileNode.textContent;
 }
 
+//Функция закрытия поп-апа
+function closePopup(popup) {
+  popup.classList.remove('popup_visible');
+  bodyNode.removeEventListener('keydown', closePopupEsc);
+  popup.removeEventListener('click', closePopupClick);
+}
+
 //Функция закрытия поп-апа на кнопку ESC
 function closePopupEsc(evt){
   if (evt.key === "Escape"){
     popup = document.querySelector('.popup_visible');
-    popup.classList.remove('popup_visible');
-    bodyNode.removeEventListener('keydown', closePopupEsc);
+    closePopup(popup);
   }
 };
 
 //Функция закрытия поп-апа по клику на оверлей
 function closePopupClick(evt) {
   if (evt.target.classList.contains('popup')) {
-    handleCloseButtonClick(evt)
+    closePopup(evt.target);
   }
 }
 
@@ -122,9 +96,9 @@ profileButtonNode.addEventListener('click', () => openAndFillProfilePopup(popupP
 addPlaceButtonNode.addEventListener('click', () => openPopup(popupPlaceNode));
 
 //Листенеры на кнопки закрытия поп-апов
-popupProfileCloseButtonNode.addEventListener('click', handleCloseButtonClick);
-popupPlaceCloseButtonNode.addEventListener('click', handleCloseButtonClick);
-popupImageCloseButtonNode.addEventListener('click', handleCloseButtonClick);
+popupProfileCloseButtonNode.addEventListener('click', () => closePopup(popupProfileNode));
+popupPlaceCloseButtonNode.addEventListener('click', () => closePopup(popupPlaceNode));
+popupImageCloseButtonNode.addEventListener('click', closePopup(popupImageNode));
 
 //Листенеры на формы
 formProfileElement.addEventListener('submit', submitProfileForm); 
@@ -185,3 +159,4 @@ function composeItem(item) {
 
 renderList();
 
+enableValidation(validationConfig);
