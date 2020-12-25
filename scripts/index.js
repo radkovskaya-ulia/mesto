@@ -12,8 +12,10 @@ const popupProfileCloseButtonNode = document.querySelector('.popup__close-button
 const popupPlaceCloseButtonNode = document.querySelector('.popup__close-button_type_place');
 const popupImageCloseButtonNode = document.querySelector('.popup__close-button_type_image');
 
-//Другие кнопки
+//Элементы поп-апа с изображением
 const photogridLikeButtonNode = document.querySelector('.photo-grid__like-button');
+const popupImage = popupImageNode.querySelector('.popup__image');
+const popupText = popupImageNode.querySelector('.popup__text');
 
 //Формы
 const formProfileElement = document.querySelector('form[name=edit_profile]');
@@ -37,6 +39,9 @@ const listContainerElement = document.querySelector('.photo-grid__item-list');
 
 //Шаблон для карточек
 const templateElement = document.querySelector('.template');
+
+//Список карточек 
+const listItems = initialCards.map(composeItem);
 
 //Функция открытия поп-апа
 function openPopup(popup){
@@ -133,9 +138,8 @@ function imageClick(link, name) {
 }
 
 //Функция генерации списка карточек
-function renderList() {
-  const listItems = initialCards.map(composeItem);
-  listContainerElement.append(...listItems);
+function renderList(list, listContainer) {
+  listContainer.append(...list);
 }
 
 //Создание карточек
@@ -157,6 +161,6 @@ function composeItem(item) {
   return newItem;
 }
 
-renderList();
+renderList(listItems, listContainerElement);
 
 enableValidation(validationConfig);
