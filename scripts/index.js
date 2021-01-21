@@ -1,3 +1,7 @@
+import {Card} from './Сard.js'
+import {validationConfig, FormValidator} from './FormValidator.js'
+import {initialCards} from './initial-сards.js';
+
 //Поп-апы
 const popupProfileNode = document.querySelector('.popup_type_profile');
 const popupPlaceNode = document.querySelector('.popup_type_place');
@@ -37,12 +41,6 @@ const jobProfileNode = document.querySelector('.profile__subtitle');
 //Контейнер для добавления карточек
 const listContainerElement = document.querySelector('.photo-grid__item-list');
 
-//Шаблон для карточек
-const templateElement = document.querySelector('.template');
-
-//Список карточек 
-const listItems = initialCards.map(composeItem);
-
 //Функция открытия поп-апа
 function openPopup(popup){
   popup.classList.add('popup_visible');
@@ -60,11 +58,11 @@ function submitProfileForm (evt) {
 
 function submitPlaceForm (evt) {
   evt.preventDefault();
-  addNewItem(placeNameInput.value, placeLinkInput.value);
+  const card = new Card({name: placeNameInput.value, link: placeLinkInput.value}, '.template', imageClick);
+  const cardElement = card.generateCard();
+  document.querySelector('.photo-grid__item-list').prepend(cardElement);
   closePopup(evt.target.closest('.popup'));
   formPlaceElement.reset();
-  const submitButton = formPlaceElement.querySelector('.popup__save-button');
-  setButtonState(submitButton, formPlaceElement.checkValidity(), validationConfig)
 }
 
 //Функция открытия и заполнения поп-апа профайла
@@ -73,7 +71,6 @@ function openAndFillProfilePopup(popup){
   nameInput.value = nameProfileNode.textContent;
   jobInput.value = jobProfileNode.textContent;
   const submitButton = formProfileElement.querySelector('.popup__save-button');
-  setButtonState(submitButton, formProfileElement.checkValidity(), validationConfig);
 }
 
 //Функция закрытия поп-апа
@@ -111,24 +108,6 @@ popupImageCloseButtonNode.addEventListener('click', () => closePopup(popupImageN
 formProfileElement.addEventListener('submit', submitProfileForm); 
 formPlaceElement.addEventListener('submit', submitPlaceForm); 
 
-//Функция добавления новой карточки
-function addNewItem(name, link) {
-  const newItem = composeItem({name: name, link: link})
-  listContainerElement.prepend(newItem);
-}
-
-//Функция удаления карточки
-function removeItem(evt) {
-  const targetItem = evt.target.closest('.photo-grid__item');
-  targetItem.remove();
-}
-
-//Функция добавления лайка на карточку
-function likeItem(evt) {
-  targetItem = evt.target;
-  targetItem.classList.toggle('photo-grid__like-button_active');
-}
-
 //Функция открытия и заполнения поп-апа с изображением
 function imageClick(link, name) {
   openPopup(popupImageNode);
@@ -139,30 +118,16 @@ function imageClick(link, name) {
   popupText.textContent = name;
 }
 
-//Функция генерации списка карточек
-function renderList(list, listContainer) {
-  listContainer.append(...list);
-}
+//Включение валидации для каждой из форм
+const formList = document.querySelectorAll('form');
+formList.forEach(form => {
+  const valid = new FormValidator(validationConfig, form);
+  valid.enableValidation();
+});
 
-//Создание карточек
-function composeItem(item) {
-  const newItem = templateElement.content.cloneNode(true);
-  const headerElement = newItem.querySelector('.photo-grid__title');
-  headerElement.textContent = item.name;
-  const photoElement = newItem.querySelector('.photo-grid__photo');
-  photoElement.src = item.link;
-  photoElement.alt = item.name + '.';
-  const removeButton = newItem.querySelector('.photo-grid__delete-button');
-  removeButton.addEventListener('click', removeItem);
-  const likeButton = newItem.querySelector('.photo-grid__like-button');
-  likeButton.addEventListener('click', likeItem);
-  const imageItem = newItem.querySelector('.photo-grid__photo');
-  imageItem.addEventListener('click', () => {
-    imageClick(item.link, item.name)
+//Создание списка карточек
+initialCards.forEach((item) => {
+  const card = new Card(item, '.template', imageClick);
+  const cardElement = card.generateCard();
+  listContainerElement.append(cardElement);
   });
-  return newItem;
-}
-
-renderList(listItems, listContainerElement);
-
-enableValidation(validationConfig);

@@ -1,5 +1,5 @@
 //Массив карточек
-const initialCards = [
+export const initialCards = [
   {
       name: 'Финляндия',
       link: 'https://images.unsplash.com/photo-1522885147691-06d859633fb8?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2100&q=80'
