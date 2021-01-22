@@ -22,10 +22,11 @@ export class Card {
   //Генерация карточек по шаблону
   generateCard() {
     this._element = this._getTemplate();
+    this._cardImage = this._element.querySelector('.photo-grid__photo');
     this._setEventListeners();
     this._element.querySelector('.photo-grid__title').textContent = this._name;
-    this._element.querySelector('.photo-grid__photo').src = this._link;
-    this._element.querySelector('.photo-grid__photo').alt = this._name + '.';
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name + '.';
     return this._element;
   }
 
