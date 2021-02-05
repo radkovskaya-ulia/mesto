@@ -1,5 +1,3 @@
-import {initialCards} from './initial-сards.js';
-
 export class Card {
 
   constructor(data, cardSelector, imageClick) {

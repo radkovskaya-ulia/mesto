@@ -25,3 +25,26 @@ export const initialCards = [
       link: 'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2100&q=80'
   }
 ]; 
+
+//Поп-апы
+export const popupProfileNode = document.querySelector('.popup_type_profile');
+export const popupPlaceNode = document.querySelector('.popup_type_place');
+export const popupImageNode = document.querySelector('.popup_type_image');
+
+//Кнопки открытия поп-апов
+export const profileButtonNode = document.querySelector('.profile__edit-button');
+export const addPlaceButtonNode = document.querySelector('.profile__add-button');
+
+//Формы
+export const formProfileElement = document.querySelector('form[name=edit_profile]');
+export const formPlaceElement = document.querySelector('form[name=add_place]');
+
+//Инпуты
+export const nameInput = document.querySelector('.popup__form-item_el_name');
+export const jobInput = document.querySelector('.popup__form-item_el_job');
+
+//Другие элементы
+export const bodyNode = document.querySelector('.page');
+
+//Контейнер для добавления карточек
+export const listContainerElement = document.querySelector('.photo-grid__item-list');
