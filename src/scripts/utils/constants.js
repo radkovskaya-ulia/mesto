@@ -48,3 +48,12 @@ export const bodyNode = document.querySelector('.page');
 
 //Контейнер для добавления карточек
 export const listContainerElement = document.querySelector('.photo-grid__item-list');
+
+//Конфиг валидации
+export const validationConfig = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__form-item',
+    submitButtonSelector: '.popup__save-button',
+    inputInvalidCLass: 'popup__form-item_state_invalid',
+    buttonInvalidClass: 'popup__save-button_invalid'
+  };

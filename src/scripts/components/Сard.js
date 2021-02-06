@@ -1,10 +1,10 @@
-export class Card {
+export default class Card {
 
-  constructor(data, cardSelector, imageClick) {
+  constructor(data, cardSelector, handleImageClick) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
-    this._imageClick = imageClick;
+    this._handleImageClick = handleImageClick;
   }
 
   //Создание разметки
@@ -24,7 +24,7 @@ export class Card {
     this._setEventListeners();
     this._element.querySelector('.photo-grid__title').textContent = this._name;
     this._cardImage.src = this._link;
-    this._cardImage.alt = this._name + '.';
+    this._cardImage.alt = `${this._name}.`;
     return this._element;
   }
 
@@ -54,7 +54,7 @@ export class Card {
 
     const imageItem = this._element.querySelector('.photo-grid__photo');
     imageItem.addEventListener('click', () => {
-      this._imageClick(this._link, this._name);
+      this._handleImageClick(this._link, this._name);
     });
   };
 

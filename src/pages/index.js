@@ -1,10 +1,10 @@
-import '../../pages/index.css';
-import {Card} from '../components/Сard.js'
-import {validationConfig, FormValidator} from '../components/FormValidator.js'
-import Section from '../components/Section.js';
-import PopupWithForm from '../components/PopupWithForm.js';
-import PopupWithImage from '../components/PopupWithImage.js';
-import UserInfo from '../components/UserInfo.js';
+import './index.css';
+import Card from '../scripts/components/Сard.js'
+import FormValidator from '../scripts/components/FormValidator.js'
+import Section from '../scripts/components/Section.js';
+import PopupWithForm from '../scripts/components/PopupWithForm.js';
+import PopupWithImage from '../scripts/components/PopupWithImage.js';
+import UserInfo from '../scripts/components/UserInfo.js';
 import {
   initialCards,
   popupProfileNode,
@@ -16,12 +16,13 @@ import {
   formPlaceElement,
   nameInput,
   jobInput,
-  listContainerElement
-} from '../utils/constants.js';
+  listContainerElement,
+  validationConfig
+} from '../scripts/utils/constants.js';
 
 //Создание новой карточки
 function createCard(data) {
-  const card = new Card({name: data.name, link: data.link}, '.template', imageClick);
+  const card = new Card({name: data.name, link: data.link}, '.template', handleImageClick);
   const cardElement = card.generateCard();
   return cardElement;
 }
@@ -47,18 +48,19 @@ popupProfile.setEventListeners()
 const popupPlace = new PopupWithForm(popupPlaceNode, {
   submitPopUp: (data) => {
     const cardElement = createCard({name: data.name, link: data.link})
-    listContainerElement.prepend(cardElement);
+    cardList.addItem(cardElement, false);
     popupPlace.close()
   }
 })
 
 popupPlace.setEventListeners()
 
+const popupImage = new PopupWithImage(popupImageNode);
+popupImage.setEventListeners()
+
 //Создание попапа изображения
-function imageClick(link, name) {
-  const popupImage = new PopupWithImage(popupImageNode, link, name);
-  popupImage.setEventListeners()
-  popupImage.open()
+function handleImageClick(link, name) {
+  popupImage.open(link, name);
 }
 
 //Листенеры на кнопки открытия поп-апов
@@ -88,7 +90,7 @@ const cardList = new Section({
   items: initialCards,
   renderer: (item) => {
     const cardElement = createCard(item);
-    cardList.addItem(cardElement);
+    cardList.addItem(cardElement, true);
   }
 },
 listContainerElement);

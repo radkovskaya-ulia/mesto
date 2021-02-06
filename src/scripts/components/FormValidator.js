@@ -1,12 +1,4 @@
-export const validationConfig = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__form-item',
-  submitButtonSelector: '.popup__save-button',
-  inputInvalidCLass: 'popup__form-item_state_invalid',
-  buttonInvalidClass: 'popup__save-button_invalid'
-};
-
-export class FormValidator {
+export default class FormValidator {
   constructor(config, form) {
     this._form = form;
     this._inputSelector = config.inputSelector;
