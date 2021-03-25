@@ -1,0 +1,10 @@
+.popup__window_type_confirm {
+  padding: 25px 22px;
+  width: calc(100% - 2*40px);
+}
+
+@media screen and (min-width: 1280px) {
+  .popup__window_type_confirm {
+    padding: 36px 34px;
+  }
+}

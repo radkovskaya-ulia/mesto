@@ -14,13 +14,13 @@
     </header>
     <main class="content">
       <section class="profile">
-        <img class="profile__avatar" src="<%=require('./images/Avatar.png')%>" alt="Фотография автора.">
+          <button class="profile__avatar-button"></button>
         <div class="profile__info">
           <div class="profile__title-container">
-            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <h1 class="profile__title"></h1>
             <button class="profile__edit-button" type="button" aria-label="Кнопка редактирования профиля"></button>
           </div>
-          <p class="profile__subtitle">Исследователь океана</p>
+          <p class="profile__subtitle"></p>
         </div>
         <button class="profile__add-button" type="button" aria-label="Кнопка добавления фотографии"></button>
       </section>
@@ -99,6 +99,33 @@
         <p class="popup__text"></p>
       </div>
     </div>
+    <div class="popup popup_type_avatar">
+      <div class="popup__window popup__window_type_avatar">
+        <button type="button" class="popup__close-button popup__close-button_type_avatar" aria-label="Кнопка закрытия редактирования аватара"></button>
+        <form class="popup__form" name="edit_avatar">
+          <h3 class="popup__form-heading">Редактировать аватар</h3>
+          <input 
+            type="url" 
+            name="avatarlink" 
+            id="avatarlink" 
+            class="popup__form-item popup__form-item_type_avatar popup__form-item_el_avatar-link" 
+            required 
+            placeholder="Ссылка на картинку"
+          >
+          <span id="avatarlink-error" class="error"></span>
+          <button type="submit" class="popup__save-button popup__save-button_type_avatar">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup_type_confirm">
+      <div class="popup__window popup__window_type_confirm">
+        <button type="button" class="popup__close-button popup__close-button_type_confirm" aria-label="Кнопка закрытия формы подтверждения"></button>
+        <form class="popup__form" name="edit_avatar">
+          <h3 class="popup__form-heading">Вы уверены?</h3>
+          <button type="submit" class="popup__save-button popup__save-button_type_confirm">Да</button>
+        </form>
+      </div>
+    </div>
   </div>
   <template class="template">
     <li class="photo-grid__item">
@@ -106,7 +133,10 @@
       <img class="photo-grid__photo" src=" " alt=" ">
       <div class="photo-grid__container">
         <h2 class="photo-grid__title"></h2>
-        <button type="button" class="photo-grid__like-button"></button>
+        <div class="photo-grid__like-container">
+          <button type="button" class="photo-grid__like-button"></button>
+          <p class="photo-grid__like-count"></p>
+        </div>
       </div>
     </li>
   </template>
