@@ -1,9 +1,14 @@
-//Поп-апы
-export const popupProfileNode = document.querySelector('.popup_type_profile');
-export const popupPlaceNode = document.querySelector('.popup_type_place');
-export const popupImageNode = document.querySelector('.popup_type_image');
-export const popupAvatarNode = document.querySelector('.popup_type_avatar');
-export const popupConfirmNode = document.querySelector('.popup_type_confirm');
+//Селекторы попапов
+export const popupProfileNode = '.popup_type_profile';
+export const popupPlaceNode = '.popup_type_place';
+export const popupImageNode = '.popup_type_image';
+export const popupAvatarNode = '.popup_type_avatar';
+export const popupConfirmNode = '.popup_type_confirm';
+
+//Селекторы информации о пользователе
+export const firstnameSelector = '.profile__title';
+export const jobSelector = '.profile__subtitle';
+export const avatarSelector = '.profile__avatar-button';
 
 //Кнопки открытия поп-апов
 export const profileButtonNode = document.querySelector('.profile__edit-button');

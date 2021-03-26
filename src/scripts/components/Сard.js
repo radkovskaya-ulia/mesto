@@ -1,6 +1,6 @@
 export default class Card {
 
-  constructor({data, handleImageClick, handleDeleteIconClick}, cardSelector, api) {
+  constructor({data, handleImageClick, handleDeleteIconClick}, cardSelector, api, userId) {
     this._name = data.name;
     this._link = data.link;
     this._owner = data.owner;
@@ -10,7 +10,7 @@ export default class Card {
     this._handleImageClick = handleImageClick;
     this._handleDeleteIconClick = handleDeleteIconClick;
     this._api = api;
-    this._userId = 'c9b0fb2021c6601fa350f204'
+    this._userId = userId
   }
 
   //Создание разметки

@@ -22,8 +22,14 @@ import {
   validationConfig,
   popupAvatarNode,
   avatarButtonNode,
-  popupConfirmNode
+  popupConfirmNode,
+  firstnameSelector,
+  jobSelector,
+  avatarSelector
+  
 } from '../scripts/utils/constants.js';
+
+let userId
 
 //Создание элемента класса Api
 const api = new Api({
@@ -43,18 +49,25 @@ addCardValidator.enableValidation();
 const avatarValidator = new FormValidator(validationConfig, formAvatarElement);
 avatarValidator.enableValidation();
 
-api.
+const promises = [profilePromise, cardPromise]
+
+const profilePromise = 
+  api.
   getUserInfo()
   .then((data) => {
     const userInfo = new UserInfo({
-      name: data.name,
-      job: data.about
+      name : data.name,
+      job: data.job,
+      firstnameSelector,
+      jobSelector,
+      avatarSelector
     })
     userInfo.setUserInfo({
       firstname: data.name,
       job: data.about
     })
     userInfo.setUserAvatar(data.avatar);
+    userId = data._id
 
     //Создание попапа профайла
     const popupProfile = new PopupWithForm(popupProfileNode, {
@@ -107,8 +120,8 @@ api.
   })
   .catch(err=>console.log(err))
 
-
-api.
+const cardPromise =
+  api.
   getCards()
   .then((data) => {
     //Создание новой карточки
@@ -123,7 +136,8 @@ api.
         }
         },
         '.template',
-        api);
+        api,
+        userId);
       const cardElement = card.generateCard();
       return cardElement;
     }
@@ -195,4 +209,8 @@ api.
 
   })
   .catch(err=>console.log(err))
+
+Promise.all(promises)
+  .then((results) => {
+  })
 

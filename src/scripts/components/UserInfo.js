@@ -2,10 +2,11 @@ export default class UserInfo{
   constructor(data){
     this._firstname = data.name;
     this._job = data.job;
-    this._firstnameElement= document.querySelector('.profile__title');
-    this._jobValueElemnt= document.querySelector('.profile__subtitle');
-    this._avatarElement = document.querySelector('.profile__avatar-button')
+    this._firstnameElement= document.querySelector(data.firstnameSelector);
+    this._jobValueElemnt= document.querySelector(data.jobSelector);
+    this._avatarElement = document.querySelector(data.avatarSelector);
   }
+
 
   getUserInfo(){
     const data = {name: this._firstnameElement.textContent, job: this._jobValueElemnt.textContent}
