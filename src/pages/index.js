@@ -111,9 +111,9 @@ const profilePromise =
           .then((data) => {
             userInfo.setUserAvatar(data.avatar)
             popupAvatar.close()
+          })
           .catch(err=>console.log(err))
           .finally(() => popupProfile.loading(false, "Сохранить"))
-          })
         }})
     popupAvatar.setEventListeners()
 

@@ -19,7 +19,6 @@ export default class PopupWithForm extends Popup {
     super.open()
     this._element = card._element;
     this._cardId = cardId;
-    console.log(this._form)
   }
 
   deleteCard(){
