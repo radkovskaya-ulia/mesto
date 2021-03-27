@@ -49,25 +49,50 @@ addCardValidator.enableValidation();
 const avatarValidator = new FormValidator(validationConfig, formAvatarElement);
 avatarValidator.enableValidation();
 
-const promises = [profilePromise, cardPromise]
+const promises = [api.getUserInfo(), api.getCards()]
 
-const profilePromise = 
-  api.
-  getUserInfo()
-  .then((data) => {
+Promise.all(promises)
+  .then(([userData, cards]) =>{
     const userInfo = new UserInfo({
-      name : data.name,
-      job: data.job,
       firstnameSelector,
       jobSelector,
       avatarSelector
     })
     userInfo.setUserInfo({
-      firstname: data.name,
-      job: data.about
+      firstname: userData.name,
+      job: userData.about
     })
-    userInfo.setUserAvatar(data.avatar);
-    userId = data._id
+    userInfo.setUserAvatar(userData.avatar);
+    userId = userData._id
+
+    function createCard(data) {
+      const card = new Card(
+        {
+        data: {name: data.name, link: data.link, likes: data.likes, owner: data.owner, id: data.id},
+        handleImageClick: (link, name) => {
+          popupImage.open(link, name);},
+        handleDeleteIconClick: (card, cardId) => {
+          popupConfirm.open(card, cardId)
+        }
+        },
+        '.template',
+        api,
+        userId);
+      const cardElement = card.generateCard();
+      return cardElement;
+    }
+    const cardList = new Section({
+      items: cards.map(item => {
+        return {name : item.name, link : item.link, likes: item.likes, owner: item.owner._id, id: item._id}}
+        ),
+      renderer: (item) => {
+        const cardElement = createCard(item);
+        cardList.addItem(cardElement, true);
+      },
+      api
+    },
+    listContainerElement);
+    cardList.render()
 
     //Создание попапа профайла
     const popupProfile = new PopupWithForm(popupProfileNode, {
@@ -117,43 +142,6 @@ const profilePromise =
         }})
     popupAvatar.setEventListeners()
 
-  })
-  .catch(err=>console.log(err))
-
-const cardPromise =
-  api.
-  getCards()
-  .then((data) => {
-    //Создание новой карточки
-    function createCard(data) {
-      const card = new Card(
-        {
-        data: {name: data.name, link: data.link, likes: data.likes, owner: data.owner, id: data.id},
-        handleImageClick: (link, name) => {
-          popupImage.open(link, name);},
-        handleDeleteIconClick: (card, cardId) => {
-          popupConfirm.open(card, cardId)
-        }
-        },
-        '.template',
-        api,
-        userId);
-      const cardElement = card.generateCard();
-      return cardElement;
-    }
-    const cardList = new Section({
-      items: data.map(item => {
-        return {name : item.name, link : item.link, likes: item.likes, owner: item.owner._id, id: item._id}}
-        ),
-      renderer: (item) => {
-        const cardElement = createCard(item);
-        cardList.addItem(cardElement, true);
-      },
-      api
-    },
-    listContainerElement);
-    cardList.render()
-    
     //Листенер на кнопку открытия поп-апа места
     addPlaceButtonNode.addEventListener('click', () => {
       formPlaceElement.reset();
@@ -206,11 +194,5 @@ const cardPromise =
 
     popupConfirm.setEventListeners()
 
-
   })
   .catch(err=>console.log(err))
-
-Promise.all(promises)
-  .then((results) => {
-  })
-
